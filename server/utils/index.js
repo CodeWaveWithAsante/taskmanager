@@ -16,6 +16,7 @@ export const createJWT = (res, userId) => {
     expiresIn: "1d",
   });
 
+  // Change sameSite from strict to none when you deploy your app
   res.cookie("token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV !== "development",
