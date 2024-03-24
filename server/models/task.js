@@ -14,23 +14,25 @@ const taskSchema = new Schema(
       default: "todo",
       enum: ["todo", "in progress", "completed"],
     },
-    activities: {
-      type: {
-        type: String,
-        default: "assigned",
-        enum: [
-          "assigned",
-          "started",
-          "in progress",
-          "bug",
-          "completed",
-          "commented",
-        ],
+    activities: [
+      {
+        type: {
+          type: String,
+          default: "assigned",
+          enum: [
+            "assigned",
+            "started",
+            "in progress",
+            "bug",
+            "completed",
+            "commented",
+          ],
+        },
+        activity: String,
+        date: { type: Date, default: new Date() },
+        by: { type: Schema.Types.ObjectId, ref: "User" },
       },
-      activity: String,
-      date: { type: Date, default: new Date() },
-      by: { type: Schema.Types.ObjectId, ref: "User" },
-    },
+    ],
 
     subTasks: [
       {

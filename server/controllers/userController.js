@@ -109,7 +109,7 @@ export const getNotificationsList = async (req, res) => {
   try {
     const { userId } = req.user;
 
-    const notice = await Notice.findOne({
+    const notice = await Notice.find({
       team: userId,
       isRead: { $nin: [userId] },
     }).populate("task", "title");
@@ -140,7 +140,7 @@ export const updateUserProfile = async (req, res) => {
       user.title = req.body.title || user.title;
       user.role = req.body.role || user.role;
 
-      const updatedUser = await User.save();
+      const updatedUser = await user.save();
 
       user.password = undefined;
 
